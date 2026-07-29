@@ -24,6 +24,7 @@ class Item(models.Model):
     ]
     name = models.CharField(max_length=100)
     item_type = models.CharField(max_length=20, choices=ITEM_TYPES)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     serial_number = models.CharField(max_length=16, 
     validators=[RegexValidator(regex=r'^[A-Za-z0-9]{16}$', message='Serial number must be 16 alphanumeric characters.')])
     demirbas_number = models.CharField(max_length=8, unique=True, 
@@ -38,4 +39,4 @@ class Item(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name} ({self.demirbas_number})"
+        return f"{self.name} ({self.demirbas_number}) {self.price}€"
