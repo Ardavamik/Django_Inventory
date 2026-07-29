@@ -29,6 +29,12 @@ class Item(models.Model):
     validators=[RegexValidator(regex=r'^[A-Za-z0-9]{16}$', message='Serial number must be 16 alphanumeric characters.')])
     demirbas_number = models.CharField(max_length=8, unique=True, 
     validators=[RegexValidator(regex=r'^\d{8}$', message='Demirbas number must be 8 digits.')])
+
+    room = models.ForeignKey(Room, on_delete=models.SET_NULL,
+        null=True, blank=True,
+        related_name="items"
+    )
+
     description = models.TextField(blank=True)
     created_at = models.DateTimeField(
         auto_now_add=True

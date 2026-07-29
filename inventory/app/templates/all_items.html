@@ -1,0 +1,16 @@
+{% extends "master.html" %}
+
+{% block title %}
+  DDEDK Inventory - List of all items
+{% endblock %}
+
+{% block content %}
+<div class="mycard">
+    <h1>Items</h1>
+    <ul>
+      {% for x in items %}
+        <li onclick="window.location = 'details/{{ x.item }}'">{{ x.firstname }} {{ x.lastname }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

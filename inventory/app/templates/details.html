@@ -1,0 +1,14 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Details about {{ item.name }} {{ item.demirbas_number }} in room {{ room.room_number }}
+{% endblock %}
+
+{% block content %}
+  <div class="mycard">
+    <h1>{{ item.name }} {{ item.demirbas_number }}</h1>
+    <p>Item Type: {{ item.item_type }} Serial Number: {{ item.serial_number }} </p>
+    <p>Price {{ item.price }} TL </p>
+    <p>Description {{ item.description }} </p>
+  </div>
+{% endblock %}  
