@@ -6,20 +6,32 @@ from .models import Room, Item
 # Create your views here.
 def app(request):
     items = Item.objects.all().values()
-    rooms = Room.objects.all().values()
     template = loader.get_template('all_items.html')
     context = {
         'items': items,
+      }
+    return HttpResponse(template.render(context, request))
+
+def app1(request):
+    rooms = Room.objects.all().values()
+    template = loader.get_template('all_rooms.html')
+    context = {
         'rooms': rooms
       }
     return HttpResponse(template.render(context, request))
 
-def details(request, id):
+def item_details(request, id):
   item = Item.objects.get(id=id)
-  room = Room.objects.get(id=item.room_id)
-  template = loader.get_template('details.html')
+  template = loader.get_template('item_details.html')
   context = {
     'item': item,
+  }
+  return HttpResponse(template.render(context, request))
+
+def room_details(request, id):
+  room = Room.objects.get(id=item.room_id)
+  template = loader.get_template('room_details.html')
+  context = {
     'room': room
   }
   return HttpResponse(template.render(context, request))
