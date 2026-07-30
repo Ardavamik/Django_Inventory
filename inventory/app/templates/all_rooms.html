@@ -9,7 +9,7 @@
     <h1>Rooms</h1>
     <ul>
       {% for x in rooms %}
-        <li onclick="window.location = 'room_details/{{ x.id }}'"> {{ x.room_number }} </li>
+        <li onclick="window.location = 'room_details/{{ x.id }}'"> {{ x.room_name }} </li>
       {% endfor %}
     </ul>
   </div>

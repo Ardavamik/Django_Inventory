@@ -4,7 +4,7 @@ from django.core.validators import RegexValidator
 
 # Create your models here.
 class Room(models.Model):
-    room_number = models.CharField(max_length=10, unique=True)
+    room_name = models.CharField(max_length=10, unique=True)
     description = models.TextField(
         blank=True
     )
@@ -15,27 +15,30 @@ class Room(models.Model):
 
 
 class Item(models.Model):
-    ITEM_TYPES = [
+    MALZEME_ADI = [
         ("SERVER", "Server"),
         ("PRINTER", "Printer"),
         ("CIRCUIT", "Circuit"),
         ("FURNITURE", "Furniture"),
         ("OTHER", "Other"),
     ]
-    name = models.CharField(max_length=100)
-    item_type = models.CharField(max_length=20, choices=ITEM_TYPES)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    serial_number = models.CharField(max_length=16, 
-    validators=[RegexValidator(regex=r'^[A-Za-z0-9]{16}$', message='Serial number must be 16 alphanumeric characters.')])
-    demirbas_number = models.CharField(max_length=8, unique=True, 
-    validators=[RegexValidator(regex=r'^\d{8}$', message='Demirbas number must be 8 digits.')])
+    bakanlik_adi = models.CharField(max_length=100)
+    daire_adi = models.CharField(max_length=100, null=True, blank=True)
+    malzeme_adi = models.CharField(max_length=20, choices=MALZEME_ADI)
+    kiymet = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    ayniyat_no = models.CharField(max_length=10, null=True,
+    validators=[RegexValidator(regex=r'^\d{6}$', message='Ayniyat number must be 6 digits.')])
+    fatura_no = models.CharField(max_length=10, null=True,
+    validators=[RegexValidator(regex=r'^\d{6}$', message='Fatura number must be 6 digits.')])
+    demirbas_no = models.CharField(max_length=17, unique=True, null=True,
+    validators=[RegexValidator(regex=r'^\d{17}$', message='Demirbas number must be 17 digits.')])
 
     room = models.ForeignKey(Room, on_delete=models.SET_NULL,
         null=True, blank=True,
         related_name="items"
     )
 
-    description = models.TextField(blank=True)
+    aciklama = models.TextField(blank=True)
     created_at = models.DateTimeField(
         auto_now_add=True
     )
@@ -45,4 +48,4 @@ class Item(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name} ({self.demirbas_number}) {self.price}€"
+        return f"{self.aciklama} ({self.demirbas_number}) {self.kiymet} TL"

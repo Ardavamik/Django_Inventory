@@ -1,12 +1,12 @@
 {% extends "master.html" %}
 
 {% block title %}
-  Details about {{ room.room_number }}
+  Details about Room {{ room.room_name }}
 {% endblock %}
 
 {% block content %}
   <div class="mycard">
-    <h1>Room {{ room.room_number }}</h1>
+    <h1>Room {{ room.room_name }}</h1>
     <p>Description {{ room.description }} </p>
   </div>
 {% endblock %}  

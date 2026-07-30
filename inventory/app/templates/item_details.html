@@ -1,15 +1,17 @@
 {% extends "master.html" %}
 
 {% block title %}
-  Details about {{ item.name }} {{ item.demirbas_number }}
+  Details about Item {{ item.demirbas_number }}
 {% endblock %}
 
 {% block content %}
   <div class="mycard">
-    <h1>{{ item.name }} {{ item.demirbas_number }}</h1>
-    <h2>Room {{ item.room }}</h2>
-    <p>Item Type: {{ item.item_type }} Serial Number: {{ item.serial_number }} </p>
-    <p>Price {{ item.price }} TL </p>
-    <p>Description {{ item.description }} </p>
+    <h1>{{ item.aciklama }} {{ item.demirbas_number }}</h1>
+    <h2>Bulunduğu oda: {{ item.room }}</h2>
+    <p>Bakanlık adı: {{ item.bakanlik_adi }}</p>
+    <p>Malzeme adı: {{ item.malzeme_adi }} Ayniyat No: {{ item.ayniyat_no }} </p>
+    <p>Kıymet: {{ item.kiymet }} TL </p>
+    <p>Fatura No: {{ item.fatura_no }} </p>
+    <p>Daire Adı {{ item.daire_adi }} </p>
   </div>
 {% endblock %}  
