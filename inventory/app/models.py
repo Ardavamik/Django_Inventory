@@ -10,7 +10,7 @@ class Room(models.Model):
     )
 
     def __str__(self):
-        return self.room_number
+        return self.room_name
 
 
 
@@ -48,4 +48,4 @@ class Item(models.Model):
     )
 
     def __str__(self):
-        return f"{self.aciklama} ({self.demirbas_number}) {self.kiymet} TL"
+        return f"{self.aciklama} ({self.demirbas_no}) {self.kiymet} TL"

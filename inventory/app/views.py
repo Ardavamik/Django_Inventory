@@ -1,7 +1,9 @@
-from django.shortcuts import render, loader
+from django.shortcuts import render, loader, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .models import Room, Item
+from .forms import ItemForm
+from .forms import RoomForm
 
 # Create your views here.
 def app(request):
@@ -29,16 +31,39 @@ def item_details(request, id):
   return HttpResponse(template.render(context, request))
 
 def room_details(request, id):
-  room = Room.objects.get(id=item.room_id)
+  room = Room.objects.get(id=id)
   template = loader.get_template('room_details.html')
   context = {
-    'room': room
+    'room': room,
   }
   return HttpResponse(template.render(context, request))
 
 def main(request):
   template = loader.get_template('main.html')
   return HttpResponse(template.render())
+
+def add_item(request):
+    if request.method == 'POST':
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('all_items')
+    else:
+        form = ItemForm()
+
+    return render(request, 'add_item.html', {'form': form})
+
+def update_room(request, room_id):
+    room = Room.objects.get(id=room_id)
+    if request.method == 'POST':
+        form = RoomForm(request.POST, instance=room)
+        if form.is_valid():
+            form.save()
+            return redirect('all_rooms')
+    else:
+        form = RoomForm(instance=room)
+
+    return render(request, 'update_room.html', {'form': form})
 
 '''
 def testing(request):

@@ -1,16 +1,25 @@
 {% extends "master.html" %}
 
+{% load static %}
+
 {% block title %}
-  DDEDK Inventory - List of all items
+  DDEDK Envanter - Item listesi
 {% endblock %}
+<link rel="stylesheet" href="{% static 'style.css' %}">  
 
 {% block content %}
 <div class="mycard">
-    <h1>Items</h1>
+    <h1>Itemler</h1>
     <ul>
       {% for x in items %}
-        <li onclick="window.location = 'item_details/{{ x.id }}'">{{ x.aciklama }} - {{ x.demirbas_number }} </li>
+        <li onclick="window.location = 'item_details/{{ x.id }}'">{{ x.aciklama }} - {{ x.demirbas_no }} </li>
       {% endfor %}
     </ul>
+    <button><a href="add_item/" class="button">Add Item</a></button>
   </div>
 {% endblock %}
+<!--
+<form action="https://google.com">
+    <input type="submit" value="Go to Google" />
+</form>
+-->
