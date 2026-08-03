@@ -22,6 +22,16 @@ def app1(request):
       }
     return HttpResponse(template.render(context, request))
 
+'''
+def all_items1(request, item_id):
+    item = Item.objects.get(id=item_id)
+    # other logic to display the list of items
+    return render(request, 'all_items.html', {'item': item})
+
+def all_items(request):
+    items = Item.objects.all()
+    return render(request, "all_items.html", {"items": items})
+'''
 def item_details(request, id):
   item = Item.objects.get(id=id)
   template = loader.get_template('item_details.html')
@@ -43,15 +53,28 @@ def main(request):
   return HttpResponse(template.render())
 
 def add_item(request):
-    if request.method == 'POST':
-        form = ItemForm(request.POST)
+    if request.method == 'GET':
+        form = ItemForm(request.GET)
         if form.is_valid():
-            form.save()
-            return redirect('all_items')
+            item = form.save()
+            #return redirect('all_items', item_id=item.id)
+            return redirect('app')
     else:
         form = ItemForm()
 
     return render(request, 'add_item.html', {'form': form})
+
+def add_room(request):
+    if request.method == 'POST':
+        form = RoomForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('all_rooms')
+    else:
+        form = RoomForm()
+
+    return render(request, 'add_room.html', {'form': form})
+
 
 def update_room(request, room_id):
     room = Room.objects.get(id=room_id)

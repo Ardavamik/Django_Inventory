@@ -1,10 +1,13 @@
 {% extends "master.html" %}
 
+{% load static %}
+
 {% block title %}
 Item ekleme
 {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'grid.css' %}"> 
 <div class="mycard">
     <h1>Item ekleme</h1>
     <ul>
@@ -12,58 +15,62 @@ Item ekleme
     </ul>
     <h2>Add User Information</h2>
 
-      <form id="userForm">
+      <form id="AddForm">
         <div>
-          <label for="name"> Bakanlık Adı: </label> 
-          <input type="text" id="name" placeholder="">
+          <!--<label for="bakanlik_adi"> Bakanlık Adı: </label>-->
+          <label> Bakanlık Adı: </label> 
+          {{ form.bakanlik_adi }}
         </div> 
         
         <div>
-          <label for="email"> Daire Adı: </label> 
-          <input type="email" id="email" placeholder="">
+          <label for="daire_adi"> Daire Adı: </label> 
+          {{ form.daire_adi }}
         </div> 
         
         <div>
-          <label for="age"> Ayniyat No: </label> 
-          <input type="number" id="age" placeholder="">
+          <label for="ayniyat_no"> Ayniyat No: </label> 
+          {{ form.ayniyat_no }}
         </div>
         
         <div>
-          <label for="name"> Malzeme Adı: </label> 
-          <input type="text" id="name" placeholder="">
+          <label for="malzeme_adi"> Malzeme Adı: </label>
+          {{ form.malzeme_adi }}
+          </select>
         </div>
         
         <div>
-          <label for="name"> Kıymet: </label> 
-          <input type="text" id="name" placeholder="">
+          <label for="kiymet"> Kıymet: </label> 
+          <!--<input type="float" id="kiymet" placeholder="">-->
+          {{ form.kiymet }}
         </div>
         
         <div>
-          <label for="name"> Fatura No: </label> 
-          <input type="text" id="name" placeholder="">
+          <label for="fatura_no"> Fatura No: </label> 
+          <!--<input type="number" id="fatura_no" placeholder="">-->
+          {{ form.fatura_no }}
         </div> 
 
         <div>
-          <label for="name"> Açıklama: </label> 
-          <input type="text" id="name" placeholder="">
+          <label for="aciklama"> Açıklama: </label> 
+          <!--<input type="text" id="aciklama" placeholder="">-->
+          {{ form.aciklama }}
         </div> 
 
         <div>
-          <label for="name"> Demşirbaş No: </label> 
-          <input type="text" id="name" placeholder="">
+          <label for="demirbas_no"> Demirbaş No: </label> 
+          <!--<input type="text" id="demirbas_no" placeholder="">-->
+          {{ form.demirbas_no }}  
         </div>
         
         <div>
-          <label for="name"> Bulunduğu oda: </label> 
-          <input type="text" id="name" placeholder="">
+          <label for="room"> Bulunduğu oda: </label> 
+          {{ form.room }}
         </div> 
-          
           <button type="submit">Add Data</button>
       </form>
-    <a href="app/" class="button">Add</a>
+    <a href="/" class="button">Add</a>
   </div>
 
 
 
 {% endblock %}
-
