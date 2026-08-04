@@ -16,11 +16,15 @@ class Room(models.Model):
 
 class Item(models.Model):
     MALZEME_ADI = [
-        ("SERVER", "Server"),
-        ("PRINTER", "Printer"),
-        ("CIRCUIT", "Circuit"),
-        ("FURNITURE", "Furniture"),
-        ("OTHER", "Other"),
+        ("SERVER", "SERVER"),
+        ("PRINTER", "PRINTER"),
+        ("LAPTOP", "LAPTOP"),
+        ("TABLET", "TABLET"),
+        ("TELEVIZYON", "TELEVIZYON"),
+        ("TELEFON","TELEFON"),
+        ("KEA", "KUCUK EV ALETLERI"),
+        ("MOBILYA", "MOBILYA"),
+        ("OTHER", "DIGER MALZEMELER"),
     ]
     bakanlik_adi = models.CharField(max_length=100)
     daire_adi = models.CharField(max_length=100, null=True, blank=True)
@@ -33,9 +37,9 @@ class Item(models.Model):
     demirbas_no = models.CharField(max_length=17, unique=True, null=True,
     validators=[RegexValidator(regex=r'^\d{17}$', message='Demirbas number must be 17 digits.')])
 
-    room = models.ForeignKey(Room, on_delete=models.SET_NULL,
+    allocated_room = models.ForeignKey(Room, on_delete=models.SET_NULL,
         null=True, blank=True,
-        related_name="items"
+        related_name="allocated_items"
     )
 
     aciklama = models.TextField(blank=True)

@@ -4,7 +4,7 @@ from .models import Item, Room
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ['aciklama', 'demirbas_no', 'room','bakanlik_adi',
+        fields = ['aciklama', 'demirbas_no', 'allocated_room','bakanlik_adi',
             'daire_adi',
             'malzeme_adi',
              'kiymet',
