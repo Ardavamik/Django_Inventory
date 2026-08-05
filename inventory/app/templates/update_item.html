@@ -3,34 +3,34 @@
 {% load static %}
 
 {% block title %}
-Item ekleme
+Item güncelleme
 {% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'grid.css' %}"> 
 <div class="mycard">
-    <h1>Item ekleme</h1>
+    <h1>Item güncelleme</h1>
     <ul>
         placeholder
     </ul>
-    <h2>Add User Information</h2>
+    <h2>Update User Information</h2>
 
-      <form method="post", id="AddForm">
+      <form method="post", id="Form">
         {% csrf_token %}
         <div>
-          <!--<label for="bakanlik_adi"> Bakanlık Adı: </label>-->
           <label> Bakanlık Adı: </label> 
-          {{ form.bakanlik_adi }}
+          
+          <input type="text" value="{{ item.bakanlik_adi }}" readonly>
         </div> 
         
         <div>
           <label for="daire_adi"> Daire Adı: </label> 
-          {{ form.daire_adi }}
+          <input type="text" value="{{ item.daire_adi }}" readonly>
         </div> 
         
         <div>
-          <label for="ayniyat_no"> Ayniyat No: </label> 
-          {{ form.ayniyat_no }}
+          <label for="ayniyat_no"> Ayniyat No: </label>
+          <input type="text" value="{{ item.ayniyat_no }}" readonly>
         </div>
         
         <div>
@@ -40,26 +40,22 @@ Item ekleme
         
         <div>
           <label for="kiymet"> Kıymet: </label> 
-          <!--<input type="float" id="kiymet" placeholder="">-->
-          {{ form.kiymet }}
+          <input type="float" value="{{ item.kiymet }}" readonly>
         </div>
         
         <div>
           <label for="fatura_no"> Fatura No: </label> 
-          <!--<input type="number" id="fatura_no" placeholder="">-->
-          {{ form.fatura_no }}
+          <input type="int" value="{{ item.fatura_no }}" readonly>
         </div> 
 
         <div>
           <label for="aciklama"> Açıklama: </label> 
-          <!--<input type="text" id="aciklama" placeholder="">-->
           {{ form.aciklama }}
         </div> 
 
         <div>
           <label for="demirbas_no"> Demirbaş No: </label> 
-          <!--<input type="text" id="demirbas_no" placeholder="">-->
-          {{ form.demirbas_no }}  
+          <input type="text" value="{{ item.demirbas_no }}" readonly>
         </div>
         
         <div>
@@ -67,9 +63,11 @@ Item ekleme
           {{ form.allocated_room }}
         </div> 
         <button type="submit">Update</button>
+        <div class="buttons">
+            <a href="{% url 'item_details' item.id %}" class="button">
+                Cancel
+            </a>
+        </div>
       </form>
-  </div>
-
-
 
 {% endblock %}

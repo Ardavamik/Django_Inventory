@@ -11,7 +11,7 @@
     <h2>Odada bulunan itemler:</h2>
     <ul>
       {% for x in room.allocated_items.all %}
-        <li onclick="window.location = '../item_details/{{ x.id }}'">{{ x.aciklama }} - {{ x.demirbas_no }} </li>
+        <li onclick="window.location = '../item_details/{{ x.id }}'"> {{ x.aciklama }} - {{ x.demirbas_no }} </li>
       {% endfor %}
     </ul>
   </div>

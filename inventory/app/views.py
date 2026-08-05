@@ -1,4 +1,4 @@
-from django.shortcuts import render, loader, redirect
+from django.shortcuts import render, loader, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from .models import Room, Item
@@ -59,11 +59,47 @@ def add_room(request):
         form = RoomForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('all_rooms')
+            return redirect('app1')
     else:
         form = RoomForm()
 
     return render(request, 'add_room.html', {'form': form})
+
+'''
+def update_item(request, item_id):
+    item = Item.objects.get(id=item_id)
+    if request.method == 'GET':
+        form = ItemForm(request.GET, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('all_items')
+    else:
+        form = ItemForm(instance=item)
+
+    return render(request, 'update_item.html', {'form': form})
+
+'''
+def update_item(request, id):
+    item = get_object_or_404(Item, id=id)
+
+    if request.method == "POST":
+        form = ItemForm(request.POST, instance=item)
+
+        if form.is_valid():
+            form.save()
+            return redirect("item_details", id=item.id)
+
+    else:
+        form = ItemForm(instance=item)
+
+    return render(
+        request,
+        "update_item.html",
+        {
+            "form": form,
+            "item": item,
+        },
+    )
 
 
 def update_room(request, room_id):
