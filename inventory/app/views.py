@@ -2,7 +2,8 @@ from django.shortcuts import render, loader, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from .models import Room, Item
-from .forms import ItemForm
+from .forms import ItemCreateForm
+from .forms import ItemUpdateForm
 from .forms import RoomForm
 
 # Create your views here.
@@ -44,13 +45,13 @@ def main(request):
 
 def add_item(request):
     if request.method == 'POST':
-        form = ItemForm(request.POST)
+        form = ItemCreateForm(request.POST)
         if form.is_valid():
             item = form.save()
             #return redirect('all_items', item_id=item.id)
-            return redirect('app')
+            return redirect('all_items')  # Redirect to the list of items after adding a new item
     else:
-        form = ItemForm()
+        form = ItemCreateForm()
 
     return render(request, 'add_item.html', {'form': form})
 
@@ -58,8 +59,8 @@ def add_room(request):
     if request.method == 'POST':
         form = RoomForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('app1')
+            room =form.save()
+            return redirect('all_rooms')  # Redirect to the list of rooms after adding a new room
     else:
         form = RoomForm()
 
@@ -83,14 +84,17 @@ def update_item(request, id):
     item = get_object_or_404(Item, id=id)
 
     if request.method == "POST":
-        form = ItemForm(request.POST, instance=item)
+        form = ItemUpdateForm(request.POST, instance=item)
 
         if form.is_valid():
-            form.save()
+            item = form.save()
             return redirect("item_details", id=item.id)
+        
+        else:
+            print(form.errors)
 
     else:
-        form = ItemForm(instance=item)
+        form = ItemUpdateForm(instance=item)
 
     return render(
         request,
@@ -103,17 +107,28 @@ def update_item(request, id):
 
 
 def update_room(request, room_id):
-    room = Room.objects.get(id=room_id)
-    if request.method == 'POST':
+
+    room = get_object_or_404(Room, id=room_id)
+
+    if request.method == "POST":
         form = RoomForm(request.POST, instance=room)
+
         if form.is_valid():
-            form.save()
-            return redirect('all_rooms')
+            room = form.save()
+            return redirect("room_details", id=room.id)
+
     else:
         form = RoomForm(instance=room)
 
-    return render(request, 'update_room.html', {'form': form})
-
+    return render(
+        request,
+        "update_room.html",
+        {
+            "form": form,
+            "room": room,
+        },
+    )
+    
 '''
 def testing(request):
   mydata = Member.objects.all()

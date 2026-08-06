@@ -1,0 +1,36 @@
+{% extends "master.html" %}
+
+{% load static %}
+
+{% block title %}
+Oda ekleme
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'grid.css' %}"> 
+<div class="mycard">
+    <h1>Oda ekleme</h1>
+    <ul>
+        placeholder
+    </ul>
+    <h2>Add Room Information</h2>
+
+      <form method="post", id="Form">
+        {% csrf_token %}
+        <div>
+          <label> Oda Adı: </label> 
+          {{ form.room_name }}
+        </div> 
+        
+        <div>
+          <label> Açıklama: </label> 
+          {{ form.description }}
+        </div> 
+        
+        <button type="submit">Add Data</button>
+      </form>
+  </div>
+
+
+
+{% endblock %}

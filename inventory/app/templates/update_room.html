@@ -1,0 +1,36 @@
+{% extends "master.html" %}
+
+{% load static %}
+
+{% block title %}
+Oda güncelleme
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'grid.css' %}"> 
+<div class="mycard">
+    <h1>Oda güncelleme</h1>
+    <ul>
+        placeholder
+    </ul>
+    <h2>Update User Information</h2>
+
+      <form method="post", id="Form">
+        {% csrf_token %}
+        <div>
+          <label> Oda Adı: </label> 
+          
+          <input type="text" value="{{ room.room_name }}" readonly>
+        </div> 
+        
+        <div>
+          <label> Açıklama: </label>
+          {{ form.description }}
+        </div>
+        
+        <button type="submit">Update</button>
+        
+        </div>
+      </form>
+
+{% endblock %}
