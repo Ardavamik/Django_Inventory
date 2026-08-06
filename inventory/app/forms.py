@@ -25,16 +25,25 @@ class ItemUpdateForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields["bakanlik_adi"].disabled = True
-        #self.fields["demirbas_no"].disabled = True
         self.fields["daire_adi"].disabled = True
         self.fields["kiymet"].disabled = True
         self.fields["ayniyat_no"].disabled = True
         self.fields["fatura_no"].disabled = True
 
 
-
-
-class RoomForm(forms.ModelForm):
+class RoomCreateForm(forms.ModelForm):
     class Meta:
         model = Room
         fields = ['room_name', 'description']
+
+
+class RoomUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Room
+        fields = ['room_name', 'description']
+
+    def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+    
+            self.fields["room_name"].disabled = True
+            

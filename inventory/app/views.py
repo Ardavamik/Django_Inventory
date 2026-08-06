@@ -4,7 +4,9 @@ from django.template import loader
 from .models import Room, Item
 from .forms import ItemCreateForm
 from .forms import ItemUpdateForm
-from .forms import RoomForm
+from .forms import RoomCreateForm
+from .forms import RoomUpdateForm
+
 
 # Create your views here.
 def app(request):
@@ -57,12 +59,12 @@ def add_item(request):
 
 def add_room(request):
     if request.method == 'POST':
-        form = RoomForm(request.POST)
+        form = RoomCreateForm(request.POST)
         if form.is_valid():
             room =form.save()
             return redirect('all_rooms')  # Redirect to the list of rooms after adding a new room
     else:
-        form = RoomForm()
+        form = RoomCreateForm()
 
     return render(request, 'add_room.html', {'form': form})
 
@@ -111,14 +113,17 @@ def update_room(request, room_id):
     room = get_object_or_404(Room, id=room_id)
 
     if request.method == "POST":
-        form = RoomForm(request.POST, instance=room)
+        form = RoomUpdateForm(request.POST, instance=room)
 
         if form.is_valid():
             room = form.save()
             return redirect("room_details", id=room.id)
 
+        else:
+            print(form.errors)
+
     else:
-        form = RoomForm(instance=room)
+        form = RoomUpdateForm(instance=room)
 
     return render(
         request,
