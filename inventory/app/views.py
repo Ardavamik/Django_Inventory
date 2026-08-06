@@ -2,10 +2,10 @@ from django.shortcuts import render, loader, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from .models import Room, Item
-from .forms import ItemCreateForm
-from .forms import ItemUpdateForm
-from .forms import RoomCreateForm
-from .forms import RoomUpdateForm
+from .forms import ItemForm
+#from .forms import ItemUpdateForm
+from .forms import RoomForm
+#from .forms import RoomUpdateForm
 
 
 # Create your views here.
@@ -47,46 +47,32 @@ def main(request):
 
 def add_item(request):
     if request.method == 'POST':
-        form = ItemCreateForm(request.POST)
+        form = ItemForm(request.POST)
         if form.is_valid():
             item = form.save()
             #return redirect('all_items', item_id=item.id)
             return redirect('all_items')  # Redirect to the list of items after adding a new item
     else:
-        form = ItemCreateForm()
+        form = ItemForm()
 
     return render(request, 'add_item.html', {'form': form})
 
 def add_room(request):
     if request.method == 'POST':
-        form = RoomCreateForm(request.POST)
+        form = RoomForm(request.POST)
         if form.is_valid():
             room =form.save()
             return redirect('all_rooms')  # Redirect to the list of rooms after adding a new room
     else:
-        form = RoomCreateForm()
+        form = RoomForm()
 
     return render(request, 'add_room.html', {'form': form})
 
-'''
-def update_item(request, item_id):
-    item = Item.objects.get(id=item_id)
-    if request.method == 'GET':
-        form = ItemForm(request.GET, instance=item)
-        if form.is_valid():
-            form.save()
-            return redirect('all_items')
-    else:
-        form = ItemForm(instance=item)
-
-    return render(request, 'update_item.html', {'form': form})
-
-'''
 def update_item(request, id):
     item = get_object_or_404(Item, id=id)
 
     if request.method == "POST":
-        form = ItemUpdateForm(request.POST, instance=item)
+        form = ItemForm(request.POST, instance=item)
 
         if form.is_valid():
             item = form.save()
@@ -96,7 +82,7 @@ def update_item(request, id):
             print(form.errors)
 
     else:
-        form = ItemUpdateForm(instance=item)
+        form = ItemForm(instance=item)
 
     return render(
         request,
@@ -113,7 +99,7 @@ def update_room(request, room_id):
     room = get_object_or_404(Room, id=room_id)
 
     if request.method == "POST":
-        form = RoomUpdateForm(request.POST, instance=room)
+        form = RoomForm(request.POST, instance=room)
 
         if form.is_valid():
             room = form.save()
@@ -123,7 +109,7 @@ def update_room(request, room_id):
             print(form.errors)
 
     else:
-        form = RoomUpdateForm(instance=room)
+        form = RoomForm(instance=room)
 
     return render(
         request,

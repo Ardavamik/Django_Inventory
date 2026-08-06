@@ -19,8 +19,8 @@ Oda güncelleme
         {% csrf_token %}
         <div>
           <label> Oda Adı: </label> 
-          
-          <input type="text" value="{{ room.room_name }}" readonly>
+          <!--<input type="text" value="{{ room.room_name }}" readonly>-->
+          {{ form.room_name }}
         </div> 
         
         <div>

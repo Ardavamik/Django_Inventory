@@ -19,18 +19,20 @@ Item güncelleme
         {% csrf_token %}
         <div>
           <label> Bakanlık Adı: </label> 
-          
-          <input type="text" value="{{ item.bakanlik_adi }}" readonly>
+          {{ form.bakanlik_adi }}
+          <!--<input type="text" value="{{ item.bakanlik_adi }}" readonly>-->
         </div> 
         
         <div>
-          <label for="daire_adi"> Daire Adı: </label> 
-          <input type="text" value="{{ item.daire_adi }}" readonly>
+          <label for="daire_adi"> Daire Adı: </label>
+          {{ form.daire_adi }} 
+          <!--<input type="text" value="{{ item.daire_adi }}" readonly>-->
         </div> 
         
         <div>
           <label for="ayniyat_no"> Ayniyat No: </label>
-          <input type="text" value="{{ item.ayniyat_no }}" readonly>
+          {{ form.ayniyat_no }}
+          <!--<input type="text" value="{{ item.ayniyat_no }}" readonly>-->
         </div>
         
         <div>
@@ -39,13 +41,15 @@ Item güncelleme
         </div>
         
         <div>
-          <label for="kiymet"> Kıymet: </label> 
-          <input type="float" value="{{ item.kiymet }}" readonly>
+          <label for="kiymet"> Kıymet: </label>
+          {{ form.kiymet }} 
+          <!--<input type="float" value="{{ item.kiymet }}" readonly>-->
         </div>
         
         <div>
-          <label for="fatura_no"> Fatura No: </label> 
-          <input type="int" value="{{ item.fatura_no }}" readonly>
+          <label for="fatura_no"> Fatura No: </label>
+          {{ form.fatura_no }} 
+          <!--<input type="int" value="{{ item.fatura_no }}" readonly>-->
         </div> 
 
         <div>
@@ -54,8 +58,9 @@ Item güncelleme
         </div> 
 
         <div>
-          <label for="demirbas_no"> Demirbaş No: </label> 
-          <input type="text" value="{{ item.demirbas_no }}" readonly>
+          <label for="demirbas_no"> Demirbaş No: </label>
+          {{ form.demirbas_no }} 
+          <!--<input type="text" value="{{ item.demirbas_no }}" readonly>-->
         </div>
         
         <div>
