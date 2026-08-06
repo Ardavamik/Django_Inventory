@@ -68,11 +68,12 @@ Item güncelleme
           {{ form.allocated_room }}
         </div> 
         <button type="submit">Update</button>
-        <div class="buttons">
+        <button><a href="{% url 'item_details' item.id %}" class="button">Cancel</a></button>
+        <!--<div class="buttons">
             <a href="{% url 'item_details' item.id %}" class="button">
                 Cancel
             </a>
-        </div>
+        </div>-->
       </form>
 
 {% endblock %}

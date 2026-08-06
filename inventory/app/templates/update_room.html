@@ -28,12 +28,13 @@ Oda güncelleme
           {{ form.description }}
         </div>
         
-        <button type="submit">Update Room</button>
-        <div class="buttons">
+        <button type="submit">Update</button>
+        <button><a href="{% url 'room_details' room.id %}" class="button">Cancel</a></button>
+        <!--<div class="buttons">
             <a href="{% url 'room_details' room.id %}" class="button">
                 Cancel
             </a>
-        </div>
+        </div>-->
         </div>
       </form>
 
