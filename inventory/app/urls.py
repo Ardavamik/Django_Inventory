@@ -16,7 +16,8 @@ urlpatterns = [
     path('app1/room_details/<int:id>', views.room_details, name='room_details'),
     path('app1/item_details/update_item/<int:id>', views.update_item, name='update_item'),
     path("app/item_details/<int:id>/warehouse/",views.move_to_warehouse, name="move_to_warehouse"),
-    path("app/item_details/<int:id>/restore_item/", views.restore_item, name="restore_item"),
+    path("app/item_details/<int:id>/restore/", views.restore_item, name="restore_item"),
     path("active_items/", views.active_items, name="active_items"),
     path("passive_items/", views.passive_items, name="passive_items"),
+    path("app/item/<int:id>/delete/", views.delete_item, name="delete_item",),
     ]

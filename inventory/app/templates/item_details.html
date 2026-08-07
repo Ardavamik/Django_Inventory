@@ -16,6 +16,7 @@
     <p>Fatura No: {{ item.fatura_no }} </p>
     <p>Durum: {{ item.status }} </p>
     <button><a href="update_item/{{ item.id }}" class="button">Update Item</a></button>
+    <button><a href="{% url 'delete_item' item.id %}" class="button delete">Delete Item</a></button>
     {% if item.status == "AKTIF" %}
 
     <button><a href="{% url 'move_to_warehouse' item.id %}" class="button">Move to Warehouse</a></button>

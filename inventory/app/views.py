@@ -162,6 +162,23 @@ def restore_item(request, id):
     item.save()
 
     return redirect("item_details", id=item.id)
+
+
+def delete_item(request, id):
+
+    item = get_object_or_404(Item, id=id)
+
+    if request.method == "POST":
+        item.delete()
+        return redirect("all_items")
+
+    return render(
+        request,
+        "delete_item.html",
+        {
+            "item": item,
+        }
+    )
         
 '''
 def testing(request):
