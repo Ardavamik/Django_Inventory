@@ -7,12 +7,19 @@
 {% endblock %}
 <link rel="stylesheet" href="{% static 'style.css' %}">  
 
+
 {% block content %}
 <div class="mycard">
     <h1>Itemler</h1>
+    <a href="{% url 'all_items' %}">Tüm Itemler</a> |
+    <a href="{% url 'active_items' %}">Aktif Itemler</a> |
+    <a href="{% url 'passive_items' %}">Pasif Itemler</a>
     <ul>
       {% for x in items %}
-        <li onclick="window.location = 'item_details/{{ x.id }}'">{{ x.aciklama }} - {{ x.demirbas_no }} </li>
+        <li onclick="window.location = '{% url 'item_details' x.id %}'">{{ x.aciklama }} - {{ x.demirbas_no }} </li>
+        <!--<li onclick="window.location = 'item_details/{{ x.id }}'">{{ x.aciklama }} - {{ x.demirbas_no }} </li>-->
+      {% empty %}
+        <li>No items found.</li>
       {% endfor %}
     </ul>
     <button><a href="add_item/" class="button">Add Item</a></button>

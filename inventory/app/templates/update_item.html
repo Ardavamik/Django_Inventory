@@ -66,6 +66,11 @@ Item güncelleme
         <div>
           <label> Bulunduğu oda: </label> 
           {{ form.allocated_room }}
+        </div>
+        
+        <div>
+          <label> Durum: </label> 
+          {{ form.status }}
         </div> 
         <button type="submit">Update</button>
         <button><a href="{% url 'item_details' item.id %}" class="button">Cancel</a></button>

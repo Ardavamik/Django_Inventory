@@ -7,15 +7,32 @@ from .forms import ItemForm
 from .forms import RoomForm
 #from .forms import RoomUpdateForm
 
-
 # Create your views here.
 def app(request):
     items = Item.objects.all().values()
     template = loader.get_template('all_items.html')
     context = {
         'items': items,
+        "page_title": "Tüm Itemler",
       }
     return HttpResponse(template.render(context, request))
+
+def active_items(request):
+    items = Item.objects.filter(status="AKTIF")
+
+    return render(request, "all_items.html", {
+        "items": items,
+        "page_title": "Aktif Itemler",
+    })
+
+
+def passive_items(request):
+    items = Item.objects.filter(status="PASIF")
+
+    return render(request, "all_items.html", {
+        "items": items,
+        "page_title": "Pasif Itemler",
+    })
 
 def app1(request):
     rooms = Room.objects.all().values()
@@ -93,7 +110,6 @@ def update_item(request, id):
         },
     )
 
-
 def update_room(request, room_id):
 
     room = get_object_or_404(Room, id=room_id)
@@ -119,7 +135,33 @@ def update_room(request, room_id):
             "room": room,
         },
     )
+
+def move_to_warehouse(request, id):
+ 
+    item = get_object_or_404(Item, id=id)
+
+    warehouse = Room.objects.get(room_name="DEPO")  # Assuming "Depo" is the name of the warehouse room
+
+    if item.status == "AKTIF":
+
+        item.status = "PASIF"
+        item.allocated_room = warehouse
+
+        item.save()
+
+    return redirect("item_details", id=item.id)
+
     
+def restore_item(request, id):
+
+    item = get_object_or_404(Item, id=id)
+
+    item.status = "AKTIF"
+
+    item.save()
+
+    return redirect("item_details", id=item.id)
+        
 '''
 def testing(request):
   mydata = Member.objects.all()

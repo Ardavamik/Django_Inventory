@@ -22,10 +22,22 @@ class Item(models.Model):
         ("TABLET", "TABLET"),
         ("TELEVIZYON", "TELEVIZYON"),
         ("TELEFON","TELEFON"),
-        ("KEA", "KUCUK EV ALETLERI"),
+        ("KUCUK EV ALETLERI", "KUCUK EV ALETLERI"),
         ("MOBILYA", "MOBILYA"),
-        ("OTHER", "DIGER MALZEMELER"),
+        ("DIGER MALZEMELER", "DIGER MALZEMELER"),
     ]
+
+    STATUS_CHOICES = [
+        ("AKTIF", "Aktif"),
+        ("PASIF", "Pasif"),
+    ]
+
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default="ACTIVE",
+    )
+
     bakanlik_adi = models.CharField(max_length=100)
     daire_adi = models.CharField(max_length=100, null=True, blank=True)
     malzeme_adi = models.CharField(max_length=20, choices=MALZEME_ADI)
@@ -37,6 +49,8 @@ class Item(models.Model):
     demirbas_no = models.CharField(max_length=17, unique=True, null=True,
     validators=[RegexValidator(regex=r'^\d{17}$', message='Demirbas number must be 17 digits.')])
 
+    #is_passive = models.BooleanField(default=False)
+    
     allocated_room = models.ForeignKey(Room, on_delete=models.SET_NULL,
         null=True, blank=True,
         related_name="allocated_items"

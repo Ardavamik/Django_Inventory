@@ -9,7 +9,8 @@ class ItemForm(forms.ModelForm):
             'malzeme_adi',
              'kiymet',
             'ayniyat_no',
-            'fatura_no',]
+            'fatura_no',
+            'status',]
 
 
 # It is for disabling editable fields in the update form. You can use this form for updating the item details.

@@ -9,11 +9,21 @@
     <h1>{{ item.aciklama }} - {{ item.demirbas_no }}</h1>
     <h2>Bulunduğu oda: {{ item.allocated_room }}</h2>
     <p>Bakanlık adı: {{ item.bakanlik_adi }}</p>
-    <p>Malzeme adı: {{ item.malzeme_adi }} </p>
+    <p>Daire Adı {{ item.daire_adi }} </p>
     <p>Ayniyat No: {{ item.ayniyat_no }} </p>
+    <p>Malzeme adı: {{ item.malzeme_adi }} </p>
     <p>Kıymet: {{ item.kiymet }} TL </p>
     <p>Fatura No: {{ item.fatura_no }} </p>
-    <p>Daire Adı {{ item.daire_adi }} </p>
+    <p>Durum: {{ item.status }} </p>
     <button><a href="update_item/{{ item.id }}" class="button">Update Item</a></button>
+    {% if item.status == "AKTIF" %}
+
+    <button><a href="{% url 'move_to_warehouse' item.id %}" class="button">Move to Warehouse</a></button>
+
+    {% else %}
+
+    <button><a href="{% url 'restore_item' item.id %}" class="button">Restore to Aktif</a></button>
+
+    {% endif %}
   </div>
 {% endblock %}  
