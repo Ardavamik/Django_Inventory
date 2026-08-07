@@ -157,6 +157,7 @@ def restore_item(request, id):
     item = get_object_or_404(Item, id=id)
 
     item.status = "AKTIF"
+    item.allocated_room = None  # Remove the allocated room when restoring the item
 
     item.save()
 
