@@ -6,8 +6,11 @@ from .forms import ItemForm
 #from .forms import ItemUpdateForm
 from .forms import RoomForm
 #from .forms import RoomUpdateForm
+from django.contrib.auth.decorators import login_required, permission_required
+
 
 # Create your views here.
+@login_required
 def app(request):
     items = Item.objects.all().values()
     template = loader.get_template('all_items.html')
@@ -34,6 +37,7 @@ def passive_items(request):
         "page_title": "Pasif Itemler",
     })
 
+@login_required
 def app1(request):
     rooms = Room.objects.all().values()
     template = loader.get_template('all_rooms.html')
@@ -42,6 +46,7 @@ def app1(request):
       }
     return HttpResponse(template.render(context, request))
 
+@login_required
 def item_details(request, id):
   item = Item.objects.get(id=id)
   template = loader.get_template('item_details.html')
@@ -50,6 +55,7 @@ def item_details(request, id):
   }
   return HttpResponse(template.render(context, request))
 
+@login_required
 def room_details(request, id):
   room = Room.objects.get(id=id)
   template = loader.get_template('room_details.html')
@@ -58,10 +64,12 @@ def room_details(request, id):
   }
   return HttpResponse(template.render(context, request))
 
+@login_required
 def main(request):
   template = loader.get_template('main.html')
   return HttpResponse(template.render())
 
+@login_required
 def add_item(request):
     if request.method == 'POST':
         form = ItemForm(request.POST)
@@ -74,6 +82,7 @@ def add_item(request):
 
     return render(request, 'add_item.html', {'form': form})
 
+@login_required
 def add_room(request):
     if request.method == 'POST':
         form = RoomForm(request.POST)
@@ -85,6 +94,7 @@ def add_room(request):
 
     return render(request, 'add_room.html', {'form': form})
 
+@login_required
 def update_item(request, id):
     item = get_object_or_404(Item, id=id)
 
@@ -110,6 +120,7 @@ def update_item(request, id):
         },
     )
 
+@login_required
 def update_room(request, room_id):
 
     room = get_object_or_404(Room, id=room_id)
@@ -136,6 +147,7 @@ def update_room(request, room_id):
         },
     )
 
+@login_required
 def move_to_warehouse(request, id):
  
     item = get_object_or_404(Item, id=id)
@@ -151,7 +163,8 @@ def move_to_warehouse(request, id):
 
     return redirect("item_details", id=item.id)
 
-    
+
+@login_required
 def restore_item(request, id):
 
     item = get_object_or_404(Item, id=id)
@@ -164,6 +177,7 @@ def restore_item(request, id):
     return redirect("item_details", id=item.id)
 
 
+@login_required
 def delete_item(request, id):
 
     item = get_object_or_404(Item, id=id)
