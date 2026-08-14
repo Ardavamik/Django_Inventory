@@ -9,11 +9,11 @@ Item güncelleme
 {% block content %}
 <link rel="stylesheet" href="{% static 'grid.css' %}"> 
 <div class="mycard">
-    <h1>Item güncelleme</h1>
+    <h1>Eşya güncelleme</h1>
     <ul>
-        placeholder
+        
     </ul>
-    <h2>Update User Information</h2>
+    <h2>Eşya Bilgilerini Güncelle</h2>
 
       <form method="post", id="Form">
         {% csrf_token %}
@@ -72,8 +72,8 @@ Item güncelleme
           <label> Durum: </label> 
           {{ form.status }}
         </div> 
-        <button type="submit">Update</button>
-        <button><a href="{% url 'item_details' item.id %}" class="button">Cancel</a></button>
+        <button type="submit">Güncelle</button>
+        <button><a href="{% url 'item_details' item.id %}" class="button">İptal</a></button>
         <!--<div class="buttons">
             <a href="{% url 'item_details' item.id %}" class="button">
                 Cancel

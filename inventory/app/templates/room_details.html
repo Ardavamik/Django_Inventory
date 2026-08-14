@@ -8,12 +8,12 @@
   <div class="mycard">
     <h1>Oda no: {{ room.room_name }}</h1>
     <p>{{ room.description }} </p>
-    <h2>Odada bulunan itemler:</h2>
+    <h2>Odada bulunan eşyalar:</h2>
     <ul>
       {% for x in room.allocated_items.all %}
         <li onclick="window.location = '../item_details/{{ x.id }}'"> {{ x.aciklama }} - {{ x.demirbas_no }} </li>
       {% endfor %}
     </ul>
-    <button><a href="update_room/{{ room.id }}" class="button">Update Room</a></button>
+    <button><a href="update_room/{{ room.id }}" class="button">Oda Güncelle</a></button>
   </div>
 {% endblock %}  

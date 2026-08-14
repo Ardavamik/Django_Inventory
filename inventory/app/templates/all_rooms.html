@@ -6,12 +6,12 @@
 
 {% block content %}
 <div class="mycard">
-    <h1>Rooms</h1>
+    <h1>Odalar</h1>
     <ul>
       {% for x in rooms %}
         <li onclick="window.location = 'room_details/{{ x.id }}'"> {{ x.room_name }} </li>
       {% endfor %}
     </ul>
-    <button><a href="add_room/" class="button">Add Room</a></button>
+    <button><a href="add_room/" class="button">Oda Ekle</a></button>
   </div>
 {% endblock %}

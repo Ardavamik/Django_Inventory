@@ -15,15 +15,15 @@
     <p>Kıymet: {{ item.kiymet }} TL </p>
     <p>Fatura No: {{ item.fatura_no }} </p>
     <p>Durum: {{ item.status }} </p>
-    <button><a href="update_item/{{ item.id }}" class="button">Update Item</a></button>
-    <button><a href="{% url 'delete_item' item.id %}" class="button delete">Delete Item</a></button>
+    <button><a href="update_item/{{ item.id }}" class="button">Güncelle</a></button>
+    <button><a href="{% url 'delete_item' item.id %}" class="button delete">Sil</a></button>
     {% if item.status == "AKTIF" %}
 
-    <button><a href="{% url 'move_to_warehouse' item.id %}" class="button">Move to Warehouse</a></button>
+    <button><a href="{% url 'move_to_warehouse' item.id %}" class="button">Depoya Taşı</a></button>
 
     {% else %}
 
-    <button><a href="{% url 'restore_item' item.id %}" class="button">Restore to Aktif</a></button>
+    <button><a href="{% url 'restore_item' item.id %}" class="button">Aktif'e Geri Yükle</a></button>
 
     {% endif %}
   </div>

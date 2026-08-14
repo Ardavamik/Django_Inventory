@@ -11,18 +11,18 @@
 {% block content %}
 <div class="mycard">
     <h1>Itemler</h1>
-    <a href="{% url 'all_items' %}">Tüm Itemler</a> |
-    <a href="{% url 'active_items' %}">Aktif Itemler</a> |
-    <a href="{% url 'passive_items' %}">Pasif Itemler</a>
+    <a href="{% url 'all_items' %}">Tüm Eşyalar</a> |
+    <a href="{% url 'active_items' %}">Aktif Eşyalar</a> |
+    <a href="{% url 'passive_items' %}">Pasif Eşyalar</a>
     <ul>
       {% for x in items %}
         <li onclick="window.location = '{% url 'item_details' x.id %}'">{{ x.aciklama }} - {{ x.demirbas_no }} </li>
         <!--<li onclick="window.location = 'item_details/{{ x.id }}'">{{ x.aciklama }} - {{ x.demirbas_no }} </li>-->
       {% empty %}
-        <li>No items found.</li>
+        <li>Eşya bulunamadı.</li>
       {% endfor %}
     </ul>
-    <button><a href="add_item/" class="button">Add Item</a></button>
+    <button><a href="add_item/" class="button">Eşya Ekle</a></button>
   </div>
 {% endblock %}
 <!--
