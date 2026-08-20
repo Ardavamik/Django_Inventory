@@ -34,10 +34,16 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
 #ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = os.environ.get(
-    "ALLOWED_HOSTS",
-    "localhost,127.0.0.1"
-).split(",")
+#ALLOWED_HOSTS = os.environ.get(
+#    "ALLOWED_HOSTS",
+#    "localhost,127.0.0.1"
+#).split(",")
+
+ALLOWED_HOSTS = [
+    'inventory-prod-env.eba-hf8fsbsa.us-west-2.elasticbeanstalk.com', # Replace with your actual CNAME
+    'localhost',
+    '127.0.0.1',
+]
 
 # Application definition
 
